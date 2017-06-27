@@ -57,6 +57,21 @@
     <string name="ubicacion_registro">Obtener ubicación (permitirá a otros usuarios localizale)</string>
     <!-- Fin strings de la pantalla del registro-->
 
+
+
+    <!-- strings de la pantalla de publicar proyecto primero-->
+    <string name="tipo_de_proyecto">Selecciona el tipo de proyecto 3D</string>
+    <string name="tipo_impresion_3d">Encuentra un diseñador 3D</string>
+    <string name="tipo_scanner_3d">Encuentra un scanner 3D</string>
+    <string name="tipo_diseno_3d">Encuentra un diseñador 3D</string>
+    <string name="tipo_video_3d">Video 3D </string>
+    <string name="tipo_realidad_aumentada">Realidad Aumentada</string>
+    <string name="tipo_merchandising">Merchandising 3D</string>
+
+
+
+
+
     <!-- strings de la pantalla de publicar proyecto-->
     <string name="titulo_proyecto">Titulo del proyecto</string>
     <string name="tipologia_proyecto">Tipoloía del proyecto</string>
