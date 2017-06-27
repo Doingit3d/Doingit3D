@@ -58,7 +58,7 @@ public class Register extends AppCompatActivity{
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        civ=(CircleImageView) findViewById(R.id.foto_registro);
+        //civ=(CircleImageView) findViewById(R.id.foto_registro);
 
         latitud = 0;
         longitud = 0;
@@ -80,13 +80,13 @@ public class Register extends AppCompatActivity{
         til_repetirpass.setErrorEnabled(true);
         til_repetirpass.setPasswordVisibilityToggleEnabled(true);
 
-        scanner = (CheckBox) findViewById(R.id.check_scanner);
-        disenador = (CheckBox) findViewById(R.id.check_diseñador);
-        impresor = (CheckBox) findViewById(R.id.check_impresor);
-        impresor = (CheckBox) findViewById(R.id.check_impresor);
+        //scanner = (CheckBox) findViewById(R.id.check_scanner);
+        //disenador = (CheckBox) findViewById(R.id.check_diseñador);
+        //impresor = (CheckBox) findViewById(R.id.check_impresor);
+        //impresor = (CheckBox) findViewById(R.id.check_impresor);
         //ubicacion = (CheckBox) findViewById(R.id.posicionGPS);
 
-        civ = (CircleImageView) findViewById(R.id.foto_registro);
+        //civ = (CircleImageView) findViewById(R.id.foto_registro);
 
         //poned en todas las actividades que querais la toolbar este codigo
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
@@ -96,7 +96,7 @@ public class Register extends AppCompatActivity{
 
 
 
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+        /*PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -109,9 +109,9 @@ public class Register extends AppCompatActivity{
 
                 lugar=place.getName().toString();
 
-                /*Location l = new Location();
+                *//*Location l = new Location();
                 longitud = l.getLongitude();
-                latitud = l.getLatitude();*/
+                latitud = l.getLatitude();*//*
 
             }
 
@@ -120,7 +120,7 @@ public class Register extends AppCompatActivity{
                 // TODO: Handle the error.
                 System.out.print("An error occurred: " + status);
             }
-        });
+        });*/
 
 
 
