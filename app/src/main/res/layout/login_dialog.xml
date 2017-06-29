@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:layout_gravity="center"
-    android:gravity="center">
-
+    android:layout_height="wrap_content"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="30dp"
+    android:paddingBottom="30dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,19 +16,13 @@
         android:gravity="center"
         android:text="@string/iniciar_sesion" />
 
-   <!-- <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_launcher_icon" />-->
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/til_login_email"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <EditText
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/correo_electronico"
             android:inputType="textEmailAddress" />
@@ -35,13 +30,15 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/til_login_pass"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <EditText
-            android:layout_width="250dp"
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/contraseña"
             android:inputType="textPassword" />
+
     </android.support.design.widget.TextInputLayout>
 </LinearLayout>

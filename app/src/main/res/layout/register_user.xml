@@ -5,117 +5,26 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <include
-        layout="@layout/toolbar_reutilizable"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <!--  <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="55dp"
-                 android:orientation="horizontal">
-
-            <TextView
-                     android:id="@+id/reg"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:text="@string/registro"
-                     android:textAlignment="center"
-                     android:textSize="70px" />
-
-
-            </LinearLayout>-->
-
-            <!--  <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="center_vertical|center_horizontal"
-                  android:orientation="horizontal">
-
-                  <LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="101dp"-->
-                    <!--android:orientation="horizontal">-->
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:orientation="horizontal">-->
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="132dp"-->
-                            <!--android:layout_height="match_parent"-->
-                            <!--android:orientation="vertical">-->
-
-                            <!--&lt;!&ndash;<ImageView-->
-                                <!--android:id="@+id/imageView2"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:clickable="true"-->
-                                <!--app:srcCompat="@drawable/img_perfil" />&ndash;&gt;-->
-
-                            <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                                <!--android:id="@+id/foto_registro"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:adjustViewBounds="false"-->
-                                <!--android:clickable="true"-->
-                                <!--android:onClick="ponerFoto"-->
-                                <!--android:src="@drawable/img_perfil"-->
-                                <!--app:civ_border_color="#FF000000"-->
-                                <!--app:civ_border_width="2dp" />-->
-                        <!--</LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="260dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:orientation="vertical">-->
-
-                            <!--<TextView-->
-                                <!--android:id="@+id/textView"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="@string/tipo_perfil" />-->
-
-                            <!--<CheckBox-->
-                                <!--android:id="@+id/check_scanner"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="@string/scanner_3d" />-->
-
-                            <!--<CheckBox-->
-                                <!--android:id="@+id/check_impresor"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="@string/impresor_3d" />-->
-
-                            <!--<CheckBox-->
-                                <!--android:id="@+id/check_diseñador"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="@string/diseñador_3d" />-->
-
-                        <!--</LinearLayout>-->
-
-                    <!--</LinearLayout>-->
-
-                <!--</LinearLayout>
-
-            </LinearLayout>-->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:paddingTop="50dp"
-                android:paddingBottom="50dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/registrarse" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/til_nombre_registro"
@@ -126,7 +35,8 @@
                         android:id="@+id/et_nombre_registro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/nombre" />
+                        android:hint="@string/nombre"
+                        android:inputType="text" />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -170,45 +80,6 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15sp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:background="@color/colorPrimary"
-                    android:onClick="guardar_Perfil"
-                    android:text="@string/salvar_perfil"
-                    android:textColor="@color/blanco"
-                    android:textSize="20sp" />
-
-
-                        <!--app:srcCompat="@drawable/cab"-->
-
-                        <!--<TextView-->
-                            <!--android:id="@+id/textView21"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:gravity="center"-->
-                            <!--android:text="@string/ciudad"-->
-                            <!--android:textSize="18dp" />-->
-
-                        <!--<fragment-->
-                            <!--android:id="@+id/place_autocomplete_fragment"-->
-                            <!--android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="match_parent"-->
-                            <!--android:layout_weight="2.99"-->
-                            <!--tools:layout_editor_absoluteX="8dp"-->
-                            <!--tools:layout_editor_absoluteY="0dp" />-->
-
-
-            <!-- app:srcCompat="@drawable/don_app"-->
-
-
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>

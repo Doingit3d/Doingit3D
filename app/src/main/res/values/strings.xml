@@ -27,6 +27,7 @@
     <string name="registrarse">Registrarse</string>
     <string name="entrar">Entrar</string>
     <string name="facebook">Facebook</string>
+    <string name="regresar">Regresar</string>
     <!-- Fin strings de la pantalla de inicio-->
 
     <!-- strings de la pantalla del perfil-->
@@ -150,11 +151,11 @@
 
 
     <!-- String varios-->
-    <string name="error">ERROR</string>
+    <string name="error">Error</string>
     <string name="aceptar">Aceptar</string>
     <string name="correo_electronico">Correo electrónico</string>
     <string name="cancelar">Cancelar</string>
-    <string name="iniciar_sesion">INICIAR SESIÓN</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="si">Sí</string>
     <string name="permanecer">No, permanecer aquí</string>
     <string name="salir_app">¿Desea salir de la aplicación?</string>

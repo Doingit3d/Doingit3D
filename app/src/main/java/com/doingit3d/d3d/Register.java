@@ -174,11 +174,6 @@ public class Register extends AppCompatActivity{
 
     public void guardar_Perfil(View v) {
 
-
-
-
-
-
         //en estos condicionales se comprueba que se rellenen todos los campos y si no sale un mensaje de error
         if (nombre.getText().toString().trim().isEmpty()) {
             til_nombre.setError(getString(R.string.campo_requerido));

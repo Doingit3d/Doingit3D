@@ -27,6 +27,7 @@
     <style name="boton_facebook">
         <item name="android:background">@drawable/boton_facebook </item>
         <item name="android:textColor">@color/blanco</item>
+
     </style>
 
     <!--Boton Perfil-->

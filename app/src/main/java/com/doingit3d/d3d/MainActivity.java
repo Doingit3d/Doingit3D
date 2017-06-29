@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -22,7 +23,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessTokenTracker;
@@ -753,6 +756,110 @@ public class MainActivity extends AppCompatActivity {
 
         // show it
         alertDialog.show();
+    }
+
+    public void registerDialog(View v){
+
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        View registerView = layoutInflater.inflate(R.layout.register_user, null);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setView(registerView);
+
+        alert.setCancelable(false)
+                .setPositiveButton(R.string.registrarse,new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                    //Llamar al metodo para registrarse correctamente
+
+                        guardar_Perfil();
+                    }
+                })
+                .setNegativeButton(R.string.regresar,new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        alert.show();
+
+    }
+
+    public void guardar_Perfil() {
+
+        EditText nombre, email, pass, repetirpass;
+        TextInputLayout til_nombre, til_email, til_pass, til_repetirpass;
+
+        nombre = (EditText) findViewById(R.id.et_nombre_registro);
+        email = (EditText) findViewById(R.id.et_email_registro);
+        pass = (EditText) findViewById(R.id.et_pass_registro);
+        repetirpass = (EditText) findViewById(R.id.et_repetirpass_registro);
+
+
+        til_nombre = (TextInputLayout) findViewById(R.id.til_nombre_registro);
+        til_nombre.setErrorEnabled(true);
+        til_email = (TextInputLayout) findViewById(R.id.til_email_registro);
+        til_email.setErrorEnabled(true);
+        til_pass = (TextInputLayout) findViewById(R.id.til_pass_registro);
+        til_pass.setErrorEnabled(true);
+        til_pass.setPasswordVisibilityToggleEnabled(true);
+        til_repetirpass = (TextInputLayout) findViewById(R.id.til_repetirpass_registro);
+        til_repetirpass.setErrorEnabled(true);
+        til_repetirpass.setPasswordVisibilityToggleEnabled(true);
+
+        if (nombre.getText().toString().trim().isEmpty()) {
+            til_nombre.setError(getString(R.string.campo_requerido));
+            til_email.setError("");
+            til_pass.setError("");
+            til_repetirpass.setError("");
+
+        } else if (email.getText().toString().trim().isEmpty()) {
+            til_nombre.setError("");
+            til_email.setError(getString(R.string.campo_requerido));
+            til_pass.setError("");
+            til_repetirpass.setError("");
+
+        } else if (pass.getText().toString().trim().isEmpty()) {
+            til_nombre.setError("");
+            til_email.setError("");
+            til_pass.setError(getString(R.string.campo_requerido));
+            til_repetirpass.setError("");
+
+
+        } else if (!(pass.getText().toString().equals(repetirpass.getText().toString()))) {
+            til_nombre.setError("");
+            til_email.setError("");
+            til_pass.setError("");
+            til_repetirpass.setError(getString(R.string.diferente_pass));
+
+        } /*else if (imagen_bbdd == null) {
+            til_nombre.setError("");
+            til_email.setError("");
+            til_pass.setError("");
+            til_repetirpass.setError("");
+            Toast.makeText(getApplicationContext(), getString(R.string.elegir_img), Toast.LENGTH_SHORT).show();
+
+        } */else if ((controller.comprobar_email_repetido(email.getText().toString()) == true)) {
+            til_nombre.setError("");
+            til_email.setError(getString(R.string.email_ya_existe));
+            til_pass.setError("");
+            til_repetirpass.setError("");
+
+        } else if (isEmailValid(email.getText().toString()) == false) {
+            til_nombre.setError("");
+            til_email.setError(getString(R.string.email_verificar));
+            til_pass.setError("");
+            til_repetirpass.setError("");
+        } else {
+
+
+
+
+        }
+
+    }
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     public void ir_a_perfil(View v){
