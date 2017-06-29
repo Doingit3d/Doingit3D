@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fbutton="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
-    <!-- nuevos botones: https://github.com/hoang8f/android-flat-button-->
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-    <!-- si quereis una toolbar poned este codigo <include>, si no no saldrá y ponedlo el primero obviamente-->
     <include
         layout="@layout/toolbar_reutilizable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,13 +20,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/til_titulo_proyecto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="20sp"
                 android:focusable="false">
 
                 <EditText
@@ -42,25 +40,11 @@
             </android.support.design.widget.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/tv_tipologia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tipologia_proyecto"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinner_tipologia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/tipologia_de_proyecto" />
-
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/til_descripcion_proyecto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="20sp"
-                android:layout_marginTop="20sp">
+                android:layout_marginBottom="20sp">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -73,6 +57,8 @@
                 android:id="@+id/tv_formato_archivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/negro"
                 android:text="@string/formato_archivo"
                 android:textStyle="bold" />
 
@@ -88,6 +74,8 @@
                 android:id="@+id/tv_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/negro"
                 android:text="@string/material_string"
                 android:textStyle="bold" />
 
@@ -102,26 +90,41 @@
                 android:id="@+id/tv_fecha_hora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/negro"
                 android:text="@string/fecha_hora"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20sp"
-                android:orientation="horizontal">
 
-               <!-- <Button
-                    android:id="@+id/b_fecha_hora"
+
+            <LinearLayout
+                android:layout_width="329dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20sp"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/fecha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="abrirCalendario"
-                    android:text="@string/seleccionar_hint" />-->
+                    android:text="@string/fecha_hora"
+                    android:textColor="@color/negro"
 
-                <info.hoang8f.widget.FButton
+                    />
+
+                <ImageButton
                     android:id="@+id/b_fecha_hora"
-                    android:layout_width="wrap_content"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:onClick="abrirCalendario"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+                <!--<info.hoang8f.widget.FButton
+                    android:id="@+id/b_fecha_hora"
+                    android:layout_width="27dp"
                     android:layout_height="wrap_content"
                     android:text="@string/seleccionar_hint"
                     fbutton:buttonColor="@color/fbutton_color_alizarin"
@@ -129,23 +132,15 @@
                     fbutton:shadowColor="@color/fbutton_color_pomegranate"
                     fbutton:shadowEnabled="true"
                     fbutton:shadowHeight="5dp"
-                    android:layout_weight="0.13"
-                    android:onClick="abrirCalendario"/>
-
-                <TextView
-                    android:id="@+id/tv_fecha_seleccionada"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="serif"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    />-->
 
             </LinearLayout>
 
+
+
+
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/or_line" />
@@ -154,6 +149,8 @@
                 android:id="@+id/tv_moneda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/negro"
                 android:text="@string/tipo_moneda"
                 android:textStyle="bold" />
 
@@ -183,6 +180,8 @@
                 android:id="@+id/tv_desplazamiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/negro"
                 android:text="@string/desplazamiento"
                 android:textStyle="bold" />
 
@@ -190,7 +189,8 @@
                 android:id="@+id/radioGroup_desplazamiento"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="20sp">
+                android:layout_marginBottom="20sp"
+                >
 
                 <RadioButton
                     android:id="@+id/radioButton_sidespl"
@@ -207,23 +207,64 @@
                     android:text="@string/no_desplazamiento" />
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/tv_pais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pais"
+                android:textSize="16sp"
+                android:textColor="@color/negro"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/ciudad_poblacion_pais" />
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/til_pais"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="20sp">
+                android:layout_marginBottom="20sp"
+                android:gravity="center_vertical|center_horizontal|center">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/ciudad_poblacion_pais" />
             </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tv_privacidad"
+            <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/privacidad" />
+                app:srcCompat="?attr/dividerHorizontal" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="329dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20sp"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Subir_archivo"
+                    android:textSize="16sp"
+                    android:textColor="@color/negro"/>
+
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="35dp"
+                    android:layout_height="34dp"
+                    app:srcCompat="@android:drawable/ic_menu_upload" />
+
+            </LinearLayout>
+
 
             <RadioGroup
                 android:id="@+id/radioGroup_privacidad"
@@ -279,21 +320,21 @@
                 android:onClick="publicar_proyecto"/>-->
             <com.dd.processbutton.iml.ActionProcessButton
                 android:id="@+id/b_publicar_proyecto"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginBottom="18dp"
                 android:onClick="publicar_proyecto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:text="Publicar"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:pb_colorComplete="@color/green_complete"
+                app:pb_colorError="@color/red_error"
                 app:pb_colorNormal="@color/blue_normal"
                 app:pb_colorPressed="@color/blue_pressed"
                 app:pb_colorProgress="@color/negro"
                 app:pb_textComplete="Publicado"
-                app:pb_textProgress="Publicando"
                 app:pb_textError="Error"
-                app:pb_colorError="@color/red_error" />
+                app:pb_textProgress="Publicando" />
 
         </LinearLayout>
     </ScrollView>

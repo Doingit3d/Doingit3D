@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.doingit3d.d3d"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -78,6 +79,7 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
     compile 'jp.wasabeef:blurry:2.1.1'
     testCompile 'junit:junit:4.12'
+
 }
 
 
