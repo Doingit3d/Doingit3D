@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     private ShimmerTextView shimmerTextView;
     private LinearLayout fondo;
 
+
     private String tabla_usuario="CREATE TABLE IF NOT EXISTS usuario (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, imagen BLOB, nombre TEXT, email TEXT," +
             "contrasena TEXT, impresor INTEGER, disenador INTEGER, scanner INTEGER, latitud REAL, longitud REAL, conectado INTEGER, tutorial INTEGER," +
             " valoracion REAL, veces_valorado INTEGER, lugar TEXT, id_face TEXT)";
@@ -113,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.getApplicationContext();
         FacebookSdk.setApplicationId(getResources().getString(R.string.facebook_app_id));
+
+
+
 
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
@@ -760,101 +764,127 @@ public class MainActivity extends AppCompatActivity {
 
     public void registerDialog(View v){
 
-        LayoutInflater layoutInflater = LayoutInflater.from(this);
-        View registerView = layoutInflater.inflate(R.layout.register_user, null);
+        Context context=this;
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setView(registerView);
+        // get prompts.xml view
+        LayoutInflater li = LayoutInflater.from(context);
+        View prompt = li.inflate(R.layout.register_user, null);
 
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(prompt);
+
+        final EditText nombre, email, pass, repetirpass;
+        final TextInputLayout til_nombre, til_email, til_pass, til_repetirpass;
+
+        nombre = (EditText) prompt.findViewById(R.id.et_nombre_registro);
+        email = (EditText) prompt.findViewById(R.id.et_email_registro);
+        pass = (EditText) prompt.findViewById(R.id.et_pass_registro);
+        repetirpass = (EditText) prompt.findViewById(R.id.et_repetirpass_registro);
+
+        til_nombre = (TextInputLayout) prompt.findViewById(R.id.til_nombre_registro);
+        til_email = (TextInputLayout) prompt.findViewById(R.id.til_email_registro);
+        til_pass = (TextInputLayout) prompt.findViewById(R.id.til_pass_registro);
+        til_repetirpass = (TextInputLayout) prompt.findViewById(R.id.til_repetirpass_registro);
+
+        // set dialog message
         alert.setCancelable(false)
-                .setPositiveButton(R.string.registrarse,new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                    //Llamar al metodo para registrarse correctamente
-
-                        guardar_Perfil();
-                    }
-                })
-                .setNegativeButton(R.string.regresar,new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
+                .setPositiveButton(R.string.entrar, null)
+                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) { {
+                        //cuando pulsa aceptar
                         dialog.cancel();
-                    }
+
+                    }}
+
                 });
 
-        alert.show();
+        // create alert dialog
+        AlertDialog alertDialog = alert.create();
+        alertDialog.setIcon(R.drawable.ic_launcher_icon);
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialog) {
+
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+
+                    //CUANDO SE PULSA A "ENTRAR" EN LA VENTANA DE LOGIN
+                    @Override
+                    public void onClick(View view) {
+
+                        if (nombre.getText().toString().trim().isEmpty()) {
+                            til_nombre.setError(getString(R.string.campo_requerido));
+                            til_email.setError("");
+                            til_pass.setError("");
+                            til_repetirpass.setError("");
+
+                        } else if (email.getText().toString().trim().isEmpty()) {
+                            til_nombre.setError("");
+                            til_email.setError(getString(R.string.campo_requerido));
+                            til_pass.setError("");
+                            til_repetirpass.setError("");
+
+                        } else if (pass.getText().toString().trim().isEmpty()) {
+                            til_nombre.setError("");
+                            til_email.setError("");
+                            til_pass.setError(getString(R.string.campo_requerido));
+                            til_repetirpass.setError("");
+
+
+                        } else if (!(pass.getText().toString().equals(repetirpass.getText().toString()))) {
+                            til_nombre.setError("");
+                            til_email.setError("");
+                            til_pass.setError("");
+                            til_repetirpass.setError(getString(R.string.diferente_pass));
+
+                        } else if ((controller.comprobar_email_repetido(email.getText().toString()) == true)) {
+                            til_nombre.setError("");
+                            til_email.setError(getString(R.string.email_ya_existe));
+                            til_pass.setError("");
+                            til_repetirpass.setError("");
+
+                        } else if (isEmailValid(email.getText().toString()) == false) {
+                            til_nombre.setError("");
+                            til_email.setError(getString(R.string.email_verificar));
+                            til_pass.setError("");
+                            til_repetirpass.setError("");
+                        } else {
+
+                            //TODO: hay que hacer el metodo para registrar al usuario
+                            //controller.registrarse(comprobar_scanner(),comprobar_impresor(),comprobar_disenador(), nombre.getText().toString(),email.getText().toString(),pass.getText().toString(),imagen_bbdd,latitud,longitud,0,0,lugar,"0");
+
+                            new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText(getString(R.string.enhorabuena))
+                                    .setContentText(getString(R.string.registro_exito))
+                                    .setConfirmText(getString(R.string.aceptar))
+                                    .setConfirmClickListener(sDialog -> {
+                                        sDialog.dismissWithAnimation();
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                            finishAffinity();
+                                        }
+                                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                    })
+                                    .show();
+
+                        }
+
+                    }
+                });
+            }
+        });
+
+        // show it
+        alertDialog.show();
 
     }
 
     public void guardar_Perfil() {
 
-        EditText nombre, email, pass, repetirpass;
-        TextInputLayout til_nombre, til_email, til_pass, til_repetirpass;
-
-        nombre = (EditText) findViewById(R.id.et_nombre_registro);
-        email = (EditText) findViewById(R.id.et_email_registro);
-        pass = (EditText) findViewById(R.id.et_pass_registro);
-        repetirpass = (EditText) findViewById(R.id.et_repetirpass_registro);
-
-
-        til_nombre = (TextInputLayout) findViewById(R.id.til_nombre_registro);
-        til_nombre.setErrorEnabled(true);
-        til_email = (TextInputLayout) findViewById(R.id.til_email_registro);
-        til_email.setErrorEnabled(true);
-        til_pass = (TextInputLayout) findViewById(R.id.til_pass_registro);
-        til_pass.setErrorEnabled(true);
-        til_pass.setPasswordVisibilityToggleEnabled(true);
-        til_repetirpass = (TextInputLayout) findViewById(R.id.til_repetirpass_registro);
-        til_repetirpass.setErrorEnabled(true);
-        til_repetirpass.setPasswordVisibilityToggleEnabled(true);
-
-        if (nombre.getText().toString().trim().isEmpty()) {
-            til_nombre.setError(getString(R.string.campo_requerido));
-            til_email.setError("");
-            til_pass.setError("");
-            til_repetirpass.setError("");
-
-        } else if (email.getText().toString().trim().isEmpty()) {
-            til_nombre.setError("");
-            til_email.setError(getString(R.string.campo_requerido));
-            til_pass.setError("");
-            til_repetirpass.setError("");
-
-        } else if (pass.getText().toString().trim().isEmpty()) {
-            til_nombre.setError("");
-            til_email.setError("");
-            til_pass.setError(getString(R.string.campo_requerido));
-            til_repetirpass.setError("");
-
-
-        } else if (!(pass.getText().toString().equals(repetirpass.getText().toString()))) {
-            til_nombre.setError("");
-            til_email.setError("");
-            til_pass.setError("");
-            til_repetirpass.setError(getString(R.string.diferente_pass));
-
-        } /*else if (imagen_bbdd == null) {
-            til_nombre.setError("");
-            til_email.setError("");
-            til_pass.setError("");
-            til_repetirpass.setError("");
-            Toast.makeText(getApplicationContext(), getString(R.string.elegir_img), Toast.LENGTH_SHORT).show();
-
-        } */else if ((controller.comprobar_email_repetido(email.getText().toString()) == true)) {
-            til_nombre.setError("");
-            til_email.setError(getString(R.string.email_ya_existe));
-            til_pass.setError("");
-            til_repetirpass.setError("");
-
-        } else if (isEmailValid(email.getText().toString()) == false) {
-            til_nombre.setError("");
-            til_email.setError(getString(R.string.email_verificar));
-            til_pass.setError("");
-            til_repetirpass.setError("");
-        } else {
 
 
 
-
-        }
 
     }
 
