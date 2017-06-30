@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -25,7 +24,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessTokenTracker;
@@ -59,8 +57,7 @@ import java.util.Random;
 
 import br.com.goncalves.pugnotification.notification.PugNotification;
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import jp.wasabeef.blurry.Blurry;
-
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
     private Shimmer shimmer;
     private ShimmerTextView shimmerTextView;
     private LinearLayout fondo;
-
+    private CircleImageView civ;
+    private String lugar;
+    SweetAlertDialog sweetAlertDialog;
+    private double latitud, longitud;
 
     private String tabla_usuario="CREATE TABLE IF NOT EXISTS usuario (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, imagen BLOB, nombre TEXT, email TEXT," +
             "contrasena TEXT, impresor INTEGER, disenador INTEGER, scanner INTEGER, latitud REAL, longitud REAL, conectado INTEGER, tutorial INTEGER," +
@@ -115,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.getApplicationContext();
         FacebookSdk.setApplicationId(getResources().getString(R.string.facebook_app_id));
 
-
-
+        latitud = 0;
+        longitud = 0;
 
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
@@ -276,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
         shimmer= new Shimmer();
         shimmerTextView= (ShimmerTextView)findViewById(R.id.shimmer_tv);
+
         //si el usuario esta conectado el menu lateral se habilita y sale el icono en la tollbar
        if (controller.comprobar_conectado()){
            mapa.setVisibility(View.VISIBLE);
@@ -807,6 +808,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onShow(DialogInterface dialog) {
 
+
                 Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
                 button.setOnClickListener(new View.OnClickListener() {
 
@@ -852,21 +854,68 @@ public class MainActivity extends AppCompatActivity {
                             til_repetirpass.setError("");
                         } else {
 
-                            //TODO: hay que hacer el metodo para registrar al usuario
-                            //controller.registrarse(comprobar_scanner(),comprobar_impresor(),comprobar_disenador(), nombre.getText().toString(),email.getText().toString(),pass.getText().toString(),imagen_bbdd,latitud,longitud,0,0,lugar,"0");
+                            try {
 
-                            new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
-                                    .setTitleText(getString(R.string.enhorabuena))
-                                    .setContentText(getString(R.string.registro_exito))
-                                    .setConfirmText(getString(R.string.aceptar))
-                                    .setConfirmClickListener(sDialog -> {
-                                        sDialog.dismissWithAnimation();
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                            finishAffinity();
-                                        }
-                                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                                    })
-                                    .show();
+                                if (imagen_bbdd == null) {
+                                   // civ.setImageResource(R.drawable.nofoto);
+                                   // bitmap = ((BitmapDrawable)civ.getDrawable()).getBitmap();
+                                   // ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                   // bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                                    //imagen_bbdd = stream.toByteArray();
+
+
+                                    System.out.print("------LATITUD: " +latitud+"------------");
+                                    System.out.print("------LONGITUD: " +longitud+"------------");
+
+                                    controller.registrarse(comprobar_scanner(),comprobar_impresor(),comprobar_disenador(), nombre.getText().toString(),email.getText().toString(),pass.getText().toString(),imagen_bbdd,latitud,longitud,0,0,lugar,"0");
+                                    controller.actualizar_estado_conexion(controller.obtener_id_login(til_email.getEditText().getText().toString()),1);
+
+                                    //Toast.makeText(this,"No hay imagen",Toast.LENGTH_SHORT).show();
+
+                                }else{
+                                    // Toast.makeText(this,"SI hay imagen",Toast.LENGTH_SHORT).show();
+
+                                    controller.registrarse(comprobar_scanner(),comprobar_impresor(),comprobar_disenador(), nombre.getText().toString(),email.getText().toString(),pass.getText().toString(),imagen_bbdd,latitud,longitud,0,0,lugar,"0");
+                                    controller.actualizar_estado_conexion(controller.obtener_id_login(til_email.getEditText().getText().toString()),1);
+
+
+                                }
+
+
+
+
+                                //mensaje de que ha funcionado
+                                  new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText(getString(R.string.enhorabuena))
+                                        .setContentText(getString(R.string.registro_exito))
+                                        .setConfirmText(getString(R.string.aceptar))
+                                        .setConfirmClickListener(sDialog -> {
+                                            sDialog.dismissWithAnimation();
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                                finishAffinity();
+                                            }
+                                            alertDialog.dismiss();
+                                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                        })
+                                            .show();
+
+
+
+                            }catch(Exception e){
+
+                                //mensaje de error
+                                new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText(getString(R.string.error))
+                                        .setConfirmText(getString(R.string.aceptar))
+                                        .setConfirmClickListener(sDialog -> sDialog.dismissWithAnimation())
+                                        .show();
+
+                                //pruebas de errores por consola
+                                e.printStackTrace();
+                                System.out.println("---FALLO BBDD CONTROLLER----");
+                                System.out.println(nombre.getText().toString()+" "+email.getText().toString()+" "+pass.getText().toString()+" "+repetirpass.getText().toString()+" "+comprobar_scanner()+" "+comprobar_disenador()
+                                        +" "+comprobar_impresor());
+                            }
 
                         }
 
@@ -880,11 +929,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void guardar_Perfil() {
+    public int comprobar_scanner() {
 
+            return 0;
 
+    }
 
+    public int comprobar_disenador() {
 
+            return 0;
+
+    }
+
+    public int comprobar_impresor() {
+
+            return 0;
 
     }
 
