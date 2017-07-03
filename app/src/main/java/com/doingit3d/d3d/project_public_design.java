@@ -1,8 +1,10 @@
 package com.doingit3d.d3d;
 
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +24,11 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dd.processbutton.iml.ActionProcessButton;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.model.LatLng;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import java.io.ByteArrayOutputStream;
@@ -50,7 +57,9 @@ public class project_public_design extends AppCompatActivity implements Progress
     private ProgressGenerator progressGenerator;
     private ActionProcessButton apb;
     private TextInputLayout til_titulo, til_descripciones;
-    TextView til_fecha;
+    private TextView til_fecha;
+    private double latitud, longitud;
+    private String lugar;
 
     //Constantes que nos dicen si la imagene es de la camara o de galeria
     private static final int RESULT_LOAD_IMAGE = 22;
@@ -95,6 +104,31 @@ public class project_public_design extends AppCompatActivity implements Progress
         til_descripciones=(TextInputLayout) findViewById(R.id.til_descripcion_proyecto);
         til_fecha = (TextView) findViewById(R.id.fecha);
 
+
+
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                LatLng coordeadas=place.getLatLng();
+                latitud=coordeadas.latitude;
+                longitud=coordeadas.longitude;
+
+                lugar=place.getName().toString();
+
+
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                System.out.print("An error occurred: " + status);
+            }
+        });
+
         moneda.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
@@ -108,6 +142,40 @@ public class project_public_design extends AppCompatActivity implements Progress
             }
         });
 
+        privacidad.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.radioButton_publico:
+                        privacidad_text="publico";
+                        break;
+                    case R.id.radioButton_privado:
+                        privacidad_text="privado";
+                        break;
+                }
+            }
+        });
+
+        desplazamiento.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.radioButton_sidespl:
+                        desplazamiento_text="si";
+                        break;
+                    case R.id.radioButton_nodespl:
+                        desplazamiento_text="no";
+                        break;
+                }
+            }
+        });
+
+
+
+
+    }
+
+    public void abrirCalendario(View v){
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getFragmentManager(),"Date Picker");
     }
 
     @Override
@@ -120,11 +188,9 @@ public class project_public_design extends AppCompatActivity implements Progress
     }
 
 
-    boolean isEmailValid(CharSequence email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
 
-    public void actualizar_perfil(View v){
+
+    public void publicar_proyecto(View v){
 
         if (titulo.getEditText().getText().toString().trim().isEmpty()){
             Toast.makeText(this,getString(R.string.campo_requerido),Toast.LENGTH_SHORT).show();
@@ -184,6 +250,20 @@ public class project_public_design extends AppCompatActivity implements Progress
 
 
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();//llama a este metodo
+        return true;
+    }
+
+    public void onBackPressed(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            finishAffinity();
+        }
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
 
 
 }
