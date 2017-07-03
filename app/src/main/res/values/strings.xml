@@ -56,6 +56,11 @@
     <string name="salvar_perfil">Guardar Perfil</string>
     <string name="email_verificar">No es un email válido</string>
     <string name="ubicacion_registro">Obtener ubicación (permitirá a otros usuarios localizale)</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="centro_trabajo">Centro de trabajo</string>
+    <string name="puesto_trabajo">Puesto de trabajo</string>
+    <string name="idioma">Idioma</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento</string>
     <!-- Fin strings de la pantalla del registro-->
 
 
