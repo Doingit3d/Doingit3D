@@ -122,7 +122,7 @@ public class MenuListFragment extends Fragment {
                     startActivity(new Intent(getActivity(), Profile.class));
 
                 }else if (id== R.id.nav_publicar){
-                    startActivity(new Intent(getActivity(), Publish_Project.class));
+                    startActivity(new Intent(getActivity(), project_type.class));
 
                 }else if (id== R.id.nav_chat){
                     startActivity(new Intent(getActivity(), ChatMain.class));
