@@ -42,7 +42,7 @@ public class Editar_Perfil extends AppCompatActivity {
     private BBDD_Controller controller = new BBDD_Controller(this);
     private ImageView img;
     private EditText nombre,email,pass;
-    private CheckBox design,scanner,impresion;
+//    private CheckBox design,scanner,impresion;
     private TextInputLayout til_nombre,til_email,til_pass;
     private byte[] fotoBytes;
     private Bitmap bitmap,bm;
@@ -53,7 +53,7 @@ public class Editar_Perfil extends AppCompatActivity {
     private Bundle b;
     private BrokenView brokenView;
     private BrokenTouchListener listener;
-    private PlaceAutocompleteFragment autocompleteFragment;
+//    private PlaceAutocompleteFragment autocompleteFragment;
     private double latitud=0, longitud=0;
     private String lugar;
 
@@ -109,15 +109,15 @@ public class Editar_Perfil extends AppCompatActivity {
 
 
         img=(ImageView) findViewById(R.id.foto_editar);
-       // img.setImageResource(R.drawable.img_perfil);
+        img.setImageResource(R.drawable.img_perfil);
 
         nombre=(EditText) findViewById(R.id.et_editar_nombre);
         email=(EditText) findViewById(R.id.et_editar_email);
         pass=(EditText) findViewById(R.id.et_editar_pass);
 
-        design=(CheckBox) findViewById(R.id.activar_design);
-        scanner=(CheckBox) findViewById(R.id.activar_scanner);
-        impresion=(CheckBox) findViewById(R.id.activar_impresion);
+//        design=(CheckBox) findViewById(R.id.activar_design);
+//        scanner=(CheckBox) findViewById(R.id.activar_scanner);
+//        impresion=(CheckBox) findViewById(R.id.activar_impresion);
 
         til_nombre=(TextInputLayout) findViewById(R.id.til_editar_nombre);
         til_email=(TextInputLayout) findViewById(R.id.til_editar_email);
@@ -125,10 +125,10 @@ public class Editar_Perfil extends AppCompatActivity {
         til_pass.setPasswordVisibilityToggleEnabled(true);
 
 
-        autocompleteFragment = (PlaceAutocompleteFragment)
-                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+//        autocompleteFragment = (PlaceAutocompleteFragment)
+//                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+ /*       autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
@@ -146,7 +146,7 @@ public class Editar_Perfil extends AppCompatActivity {
                 // TODO: Handle the error.
                 System.out.print("An error occurred: " + status);
             }
-        });
+        });*/
 
     }
 
@@ -220,7 +220,7 @@ public class Editar_Perfil extends AppCompatActivity {
         onBackPressed();
     }
 
-    public  int design(){
+    /*public  int design(){
         if (design.isChecked()==true){
             return 1;
         }else{
@@ -242,7 +242,7 @@ public class Editar_Perfil extends AppCompatActivity {
         }else{
             return 0;
         }
-    }
+    }*/
 
     //comprueba que es un email valido
     boolean isEmailValid(CharSequence email) {
@@ -284,11 +284,11 @@ public class Editar_Perfil extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 fotoBytes = stream.toByteArray();
 
-                controller.actualizar_perfil(nombre.getText().toString(),email.getText().toString(),design(),scanner(),impresion(),pass.getText().toString(),fotoBytes,latitud,longitud,lugar);
+ //               controller.actualizar_perfil(nombre.getText().toString(),email.getText().toString(),design(),scanner(),impresion(),pass.getText().toString(),fotoBytes,latitud,longitud,lugar);
 
             }else{
 
-                controller.actualizar_perfil(nombre.getText().toString(),email.getText().toString(),design(),scanner(),impresion(),pass.getText().toString(),fotoBytes,latitud,longitud,lugar);
+//                controller.actualizar_perfil(nombre.getText().toString(),email.getText().toString(),design(),scanner(),impresion(),pass.getText().toString(),fotoBytes,latitud,longitud,lugar);
             }
 
             new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)

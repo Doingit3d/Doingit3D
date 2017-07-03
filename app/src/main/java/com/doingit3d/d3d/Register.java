@@ -71,11 +71,14 @@ public class Register extends AppCompatActivity{
 
         til_nombre = (TextInputLayout) findViewById(R.id.til_nombre_registro);
         til_nombre.setErrorEnabled(true);
+
         til_email = (TextInputLayout) findViewById(R.id.til_email_registro);
         til_email.setErrorEnabled(true);
+
         til_pass = (TextInputLayout) findViewById(R.id.til_pass_registro);
         til_pass.setErrorEnabled(true);
         til_pass.setPasswordVisibilityToggleEnabled(true);
+
         til_repetirpass = (TextInputLayout) findViewById(R.id.til_repetirpass_registro);
         til_repetirpass.setErrorEnabled(true);
         til_repetirpass.setPasswordVisibilityToggleEnabled(true);

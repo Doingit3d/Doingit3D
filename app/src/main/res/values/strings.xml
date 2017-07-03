@@ -1,4 +1,9 @@
 <resources>
+    <string-array name="idiomas">
+        <item>Español</item>
+        <item>Ingles</item>
+    </string-array>
+
     <string name="app_name">D3D</string>
 
 
@@ -61,6 +66,8 @@
     <string name="puesto_trabajo">Puesto de trabajo</string>
     <string name="idioma">Idioma</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
+    <string name="cuenta_propia">Cuenta propia</string>
+    <string name="cuenta_ajena">Cuenta ajena</string>
     <!-- Fin strings de la pantalla del registro-->
 
 

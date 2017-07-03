@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string-array name="idiomas">
+        <item>Spanish</item>
+        <item>English</item>
+    </string-array>
+
     <string name="app_name">D3D</string>
 
     <!-- strings del menu lateral-->
