@@ -1407,4 +1407,9 @@ public class BBDD_Controller extends SQLiteOpenHelper {
         return latitud;
     }
 
+
+
+
+
+
 }
