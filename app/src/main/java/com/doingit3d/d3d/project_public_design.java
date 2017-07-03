@@ -1,23 +1,34 @@
 package com.doingit3d.d3d;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.sdsmdg.tastytoast.TastyToast;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by cice on 29/6/17.
@@ -25,15 +36,25 @@ import java.util.Date;
 
 public class project_public_design extends AppCompatActivity implements ProgressGenerator.OnCompleteListener{
 
+    private ImageView img;
+    private BBDD_Controller controller = new BBDD_Controller(this);
     private TextInputLayout titulo, descripcion,pais;
     private Spinner tipo,formato,material;
     private RadioGroup moneda,privacidad,desplazamiento;
     private String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    private Bitmap bitmap,bm;
+    private byte[] img_proyecto;
     private TextView fecha;
     private String moneda_text, privacidad_text, desplazamiento_text;
     private CheckBox terminos;
     private ProgressGenerator progressGenerator;
     private ActionProcessButton apb;
+    private TextInputLayout til_titulo, til_descripciones;
+    TextView til_fecha;
+
+    //Constantes que nos dicen si la imagene es de la camara o de galeria
+    private static final int RESULT_LOAD_IMAGE = 22;
+    private static final int REQUEST_IMAGE_CAPTURE = 33;
 
 
     @Override
@@ -51,6 +72,7 @@ public class project_public_design extends AppCompatActivity implements Progress
         apb=(ActionProcessButton) findViewById(R.id.b_publicar_proyecto);
         apb.setMode(ActionProcessButton.Mode.PROGRESS);
 
+        img = (ImageView)findViewById(R.id.img_proyect);
         titulo=(TextInputLayout) findViewById(R.id.til_titulo_proyecto);
         descripcion=(TextInputLayout) findViewById(R.id.til_descripcion_proyecto);
         pais=(TextInputLayout) findViewById(R.id.til_pais);
@@ -66,6 +88,12 @@ public class project_public_design extends AppCompatActivity implements Progress
         fecha=(TextView) findViewById(R.id.tv_fecha_hora);
 
         terminos=(CheckBox) findViewById(R.id.checkBox_terminos);
+
+
+
+        til_titulo=(TextInputLayout) findViewById(R.id.til_titulo_proyecto);
+        til_descripciones=(TextInputLayout) findViewById(R.id.til_descripcion_proyecto);
+        til_fecha = (TextView) findViewById(R.id.fecha);
 
         moneda.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -90,5 +118,73 @@ public class project_public_design extends AppCompatActivity implements Progress
         }
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
+
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+
+    public void actualizar_perfil(View v){
+
+        if (titulo.getEditText().getText().toString().trim().isEmpty()){
+            Toast.makeText(this,getString(R.string.campo_requerido),Toast.LENGTH_SHORT).show();
+            til_titulo.setError(getString(R.string.campo_requerido));
+            til_descripciones.setError("");
+            til_fecha.setError("");
+
+        }else if (descripcion.getEditText().getText().toString().trim().isEmpty()){
+            Toast.makeText(this,getString(R.string.campo_requerido),Toast.LENGTH_SHORT).show();
+            til_titulo.setError("");
+            til_descripciones.setError(getString(R.string.campo_requerido));
+            til_fecha.setError("");
+
+        }else if (fecha.getText().toString().trim().isEmpty()){
+            Toast.makeText(this,getString(R.string.campo_requerido),Toast.LENGTH_SHORT).show();
+            til_titulo.setError("");
+            til_descripciones.setError("");
+            til_fecha.setError(getString(R.string.campo_requerido));
+
+
+        }else{
+
+            if (img_proyecto == null) {
+                // civ.setImageResource(R.drawable.nofoto);
+                // bitmap = ((BitmapDrawable)civ.getDrawable()).getBitmap();
+                bitmap = controller.obtener_imagen();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                img_proyecto = stream.toByteArray();
+
+                controller.publicar_proyecto(tipo.getSelectedItem().toString(), titulo.getEditText().getText().toString(), descripcion.getEditText().getText().toString(), fecha.getText().toString(),
+                        pais.getEditText().getText().toString(), moneda_text, date, controller.obtener_id_conectado(), desplazamiento_text, formato.getSelectedItem().toString(), privacidad_text, material.getSelectedItem().toString(), controller.username_conectado());
+                if (controller.obtener_proyectos_presentados() == 0) {
+                    controller.aumentar_proyectos_presentados();
+                } else if (controller.obtener_proyectos_presentados() > 0) {
+                    controller.aumentar_proyectos_presentados2();
+                }
+
+            }
+
+            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText(getString(R.string.enhorabuena))
+                    .setContentText(getString(R.string.cambios_guardados))
+                    .setConfirmText(getString(R.string.aceptar))
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                finishAffinity();
+                            }
+                            startActivity(new Intent(getApplicationContext(),Profile.class));
+                        }
+                    })
+                    .show();
+        }
+
+
+    }
+
+
+}
 

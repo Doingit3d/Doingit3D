@@ -25,19 +25,33 @@
             >
 
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_titulo_proyecto"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:focusable="false">
+                android:orientation="horizontal">
 
-                <EditText
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/img_proyect"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/titulo_proyecto"
-                    android:inputType="textPersonName|time"
-                    android:textStyle="bold" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/img_perfil" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_titulo_proyecto"
+                    android:layout_width="197dp"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:layout_weight="1.86">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/titulo_proyecto"
+                        android:inputType="textPersonName|time"
+                        android:textStyle="bold" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
 
             <android.support.design.widget.TextInputLayout
