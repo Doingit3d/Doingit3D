@@ -51,6 +51,11 @@
     <string name="salvar_perfil">Save profile</string>
     <string name="email_verificar">Not a valid email</string>
     <string name="ubicacion_registro">Get location (will allow other users to locate you)</string>
+    <string name="siguiente">Next</string>
+    <string name="centro_trabajo">Work</string>
+    <string name="puesto_trabajo">Position</string>
+    <string name="idioma">Languaje</string>
+    <string name="fecha_nacimiento">Birthday</string>
     <!-- Fin strings de la pantalla del registro-->
 
     <!-- strings de la pantalla de publicar proyecto-->
