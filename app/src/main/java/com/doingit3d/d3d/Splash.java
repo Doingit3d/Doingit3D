@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 public class Splash extends Activity {
 
-    private final int DURACION_SPLASH = 5000;
+    private final int DURACION_SPLASH = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
