@@ -1,5 +1,6 @@
 package com.doingit3d.d3d;
 
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,9 +43,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Editar_Perfil extends AppCompatActivity {
     private BBDD_Controller controller = new BBDD_Controller(this);
     private ImageView img;
-    private EditText nombre,email,pass;
+    private EditText nombre,email,pass,pass2;
 //    private CheckBox design,scanner,impresion;
-    private TextInputLayout til_nombre,til_email,til_pass;
+    private TextInputLayout til_nombre,til_email,til_pass, til_pass_2;
     private byte[] fotoBytes;
     private Bitmap bitmap,bm;
     private CircleImageView civ;
@@ -114,6 +116,7 @@ public class Editar_Perfil extends AppCompatActivity {
         nombre=(EditText) findViewById(R.id.et_editar_nombre);
         email=(EditText) findViewById(R.id.et_editar_email);
         pass=(EditText) findViewById(R.id.et_editar_pass);
+        pass2=(EditText) findViewById(R.id.et_editar_pass2);
 
 //        design=(CheckBox) findViewById(R.id.activar_design);
 //        scanner=(CheckBox) findViewById(R.id.activar_scanner);
@@ -124,6 +127,8 @@ public class Editar_Perfil extends AppCompatActivity {
         til_pass=(TextInputLayout) findViewById(R.id.til_editar_pass);
         til_pass.setPasswordVisibilityToggleEnabled(true);
 
+        til_pass_2=(TextInputLayout) findViewById(R.id.til_editar_pass2);
+        til_pass_2.setPasswordVisibilityToggleEnabled(true);
 
 //        autocompleteFragment = (PlaceAutocompleteFragment)
 //                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
@@ -397,4 +402,22 @@ public class Editar_Perfil extends AppCompatActivity {
             fotoBytes=arraybytes.toByteArray();
         }
     }
+
+    public void showDatePicker(View view){
+
+        DialogFragment dialogFragment = new DatePickerFragment();
+        dialogFragment.show(getFragmentManager(),"Date Picker");
+
+    }
+
+    public void doPositiveClick() {
+        // Do stuff here.
+        Log.i("FragmentAlertDialog", "Positive click!");
+    }
+
+    public void doNegativeClick() {
+        // Do stuff here.
+        Log.i("FragmentAlertDialog", "Negative click!");
+    }
+
 }

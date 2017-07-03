@@ -30,6 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".project_public_design" />
+        <activity android:name=".project_type" />
         <activity android:name=".MainActivity" />
         <activity android:name=".How_does_it_works" />
         <activity android:name=".Profile" />

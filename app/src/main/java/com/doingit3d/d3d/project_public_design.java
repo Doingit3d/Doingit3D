@@ -106,7 +106,7 @@ public class project_public_design extends AppCompatActivity implements Progress
 
 
 
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+      /*  PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -127,7 +127,7 @@ public class project_public_design extends AppCompatActivity implements Progress
                 // TODO: Handle the error.
                 System.out.print("An error occurred: " + status);
             }
-        });
+        });*/
 
         moneda.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             public void onCheckedChanged(RadioGroup group, int checkedId) {
