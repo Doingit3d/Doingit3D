@@ -85,7 +85,7 @@
 
 
 
-    <!-- strings de la pantalla de publicar proyecto-->
+    <!-- strings de la pantalla de publicar proyecto diseño-->
     <string name="titulo_proyecto">Titulo del proyecto</string>
     <string name="descripcion_proyecto">Descripción del proyecto 3D</string>
     <string name="formato_archivo">Formato de archivo(Para la entrega del diseño en 3D)</string>
@@ -95,6 +95,53 @@
     <string name="privacidad">Privacidad del proyecto</string>
     <string name="pais">Seleccione el país</string>
     <string name="Subir_archivo">Seleccione el archivo que desa subir</string>
+
+    <!-- strings de la pantalla de publicar proyecto impresión-->
+    <string name="titulo_proyecto_imp">Titulo del proyecto</string>
+    <string name="descripcion_proyecto_imp">Descripción del proyecto 3D</string>
+    <string name="subir_archivo3d">Subir fichero para imprimir</string>
+    <string name="material_impresion_imp">Subir fichero para imprimir</string>
+    <string name="fecha_hora_imp">Fecha de finalización</string>
+    <string name="tipo_moneda_imp">Moneda en la que desea recibir los presupuestos</string>
+    <string name="desplazamiento_imp">¿Requiere desplazamiento?</string>
+    <string name="privacidad_imp">Privacidad del proyecto</string>
+    <string name="pais_imp">Seleccione el país</string>
+    <string name="Subir_archivo_imp">Seleccione el archivo que desa subir</string>
+
+    <!-- strings de la pantalla de publicar proyecto scann-->
+    <string name="titulo_proyecto_scann">Titulo del proyecto</string>
+    <string name="descripcion_proyecto_scann">Descripción del proyecto 3D</string>
+    <string name="fecha_hora_scann">Fecha de finalización</string>
+    <string name="tipo_moneda_scann">Moneda en la que desea recibir los presupuestos</string>
+    <string name="desplazamiento_scann">¿Requiere desplazamiento?</string>
+    <string name="privacidad_scann">Privacidad del proyecto</string>
+    <string name="pais_scann">Seleccione el país</string>
+    <string name="Subir_archivo_scann">Seleccione el archivo que desa subir</string>
+
+    <!-- strings de la pantalla de publicar proyecto video-->
+    <string name="titulo_proyecto_video">Titulo del proyecto</string>
+    <string name="descripcion_proyecto_video">Descripción del proyecto 3D</string>
+    <string name="formato_video">Escribe el formato en el que deseas subir el video</string>
+    <string name="guion_video">Suba el guión de su video</string>
+    <string name="fecha_hora_video">Fecha de finalización</string>
+    <string name="tipo_moneda_video">Moneda en la que desea recibir los presupuestos</string>
+    <string name="desplazamiento_video">¿Requiere desplazamiento?</string>
+    <string name="privacidad_video">Privacidad del proyecto</string>
+    <string name="pais_video">Seleccione el país</string>
+    <string name="Subir_archivo_video">Seleccione el archivo que desa subir</string>
+
+    <!-- strings de la pantalla de publicar proyecto realidad-->
+    <string name="titulo_proyecto_real">Titulo del proyecto</string>
+    <string name="descripcion_proyecto_real">Descripción del proyecto 3D</string>
+    <string name="formato_real">Escribe el formato en el que deseas subir el proyecto</string>
+    <string name="guion_real">Suba el guión de su proyecto</string>
+    <string name="fecha_hora_real">Fecha de finalización</string>
+    <string name="tipo_moneda_real">Moneda en la que desea recibir los presupuestos</string>
+    <string name="desplazamiento_real">¿Requiere desplazamiento?</string>
+    <string name="privacidad_real">Privacidad del proyecto</string>
+    <string name="pais_real">Seleccione el país</string>
+    <string name="Subir_archivo_real">Seleccione el archivo que desa subir</string>
+
 
 
 

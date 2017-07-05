@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            >
+            android:weightSum="1">
 
 
             <LinearLayout
@@ -35,7 +35,7 @@
                     android:id="@+id/img_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.2"
                     app:srcCompat="@drawable/img_perfil" />
 
                 <android.support.design.widget.TextInputLayout
@@ -43,7 +43,7 @@
                     android:layout_width="197dp"
                     android:layout_height="match_parent"
                     android:focusable="false"
-                    android:layout_weight="1.86">
+                    android:layout_weight="0.8">
 
                     <EditText
                         android:layout_width="match_parent"
@@ -54,37 +54,49 @@
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/descripcion_proy"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20sp">
+                android:layout_height="wrap_content"
+                android:hint="@string/descripcion_proyecto"
+                android:textStyle="bold" />
+            </LinearLayout>
 
-                <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/formato_archivo_proy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/descripcion_proyecto"
+                    android:textSize="16sp"
+                    android:textColor="@color/negro"
+                    android:text="@string/formato_archivo"
                     android:textStyle="bold" />
-            </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/formato_archivo_proy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/negro"
-                android:text="@string/formato_archivo"
-                android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/formato_archivo_spinner_proy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20sp"
+                    android:entries="@array/formato_de_archivo" />
 
-            <Spinner
-                android:id="@+id/formato_archivo_spinner_proy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20sp"
-                android:entries="@array/formato_de_archivo" />
+        </LinearLayout>
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/material_tv_proy"
                 android:layout_width="match_parent"
@@ -101,6 +113,16 @@
                 android:layout_marginBottom="20sp"
                 android:entries="@array/material" />
 
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
             <TextView
                 android:id="@+id/fecha_hora_tv_proy"
                 android:layout_width="match_parent"
@@ -109,8 +131,6 @@
                 android:textColor="@color/negro"
                 android:text="@string/fecha_hora"
                 android:textStyle="bold" />
-
-
 
             <LinearLayout
                 android:layout_width="329dp"
@@ -137,29 +157,17 @@
                     android:onClick="abrirCalendario"
                     app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
-                <!--<info.hoang8f.widget.FButton
-                    android:id="@+id/b_fecha_hora"
-                    android:layout_width="27dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/seleccionar_hint"
-                    fbutton:buttonColor="@color/fbutton_color_alizarin"
-                    fbutton:cornerRadius="5dp"
-                    fbutton:shadowColor="@color/fbutton_color_pomegranate"
-                    fbutton:shadowEnabled="true"
-                    fbutton:shadowHeight="5dp"
-                    />-->
 
+            </LinearLayout>
             </LinearLayout>
 
 
-
-
-            <ImageView
-                android:id="@+id/imageView_proy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/or_line" />
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/tv_moneda_proy"
                 android:layout_width="match_parent"
@@ -189,8 +197,14 @@
                     android:layout_weight="1"
                     android:text="@string/dolar" />
             </RadioGroup>
+            </LinearLayout>
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/tv_desplazamiento_proy"
                 android:layout_width="match_parent"
@@ -221,6 +235,14 @@
                     android:layout_weight="1"
                     android:text="@string/no_desplazamiento" />
             </RadioGroup>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/pais_proy"
@@ -244,19 +266,12 @@
                 android:gravity="center_vertical|center_horizontal|center">
 
             </android.support.design.widget.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/imageView1_proy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="?attr/dividerHorizontal" />
-
-
+            </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="329dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20sp"
                 android:gravity="center_vertical|center_horizontal|center"
@@ -280,6 +295,11 @@
 
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <RadioGroup
                 android:id="@+id/radioGroup_privacidad_proy"
@@ -302,7 +322,14 @@
                     android:text="@string/privacidad_privado" />
 
             </RadioGroup>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
             <CheckBox
                 android:id="@+id/checkBox_terminos_proy"
                 android:layout_width="match_parent"
@@ -312,27 +339,7 @@
                 android:text="@string/terminos_condiciones"
                 android:textStyle="bold" />
 
-            <!--<Button
-                android:id="@+id/b_publicar_proyecto"
-                style="@style/boton_publicar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/save_white"
-                android:gravity="center_vertical|center"
-                android:text="@string/publicar_proyecto" />-->
 
-            <!--<info.hoang8f.widget.FButton
-                android:id="@+id/b_publicar_proyecto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                android:text="@string/publicar_proyecto"
-                fbutton:buttonColor="@color/fbutton_color_peter_river"
-                fbutton:cornerRadius="5dp"
-                fbutton:shadowColor="@color/fbutton_color_belize_hole"
-                fbutton:shadowEnabled="true"
-                fbutton:shadowHeight="5dp"
-                android:onClick="publicar_proyecto"/>-->
             <com.dd.processbutton.iml.ActionProcessButton
                 android:id="@+id/b_pub_proyecto"
                 android:layout_width="wrap_content"
@@ -350,7 +357,7 @@
                 app:pb_textComplete="Publicado"
                 app:pb_textError="Error"
                 app:pb_textProgress="Publicando" />
-
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

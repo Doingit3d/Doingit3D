@@ -44,7 +44,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class project_public_design extends AppCompatActivity implements ProgressGenerator.OnCompleteListener{
 
     private ImageView img;
-    String tipo;
+    private String tipo;
     private BBDD_Controller controller = new BBDD_Controller(this);
     private TextInputLayout titulo, descripcion;
     private Spinner formato,material;
