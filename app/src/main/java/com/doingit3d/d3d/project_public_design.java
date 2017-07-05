@@ -44,14 +44,15 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class project_public_design extends AppCompatActivity implements ProgressGenerator.OnCompleteListener{
 
     private ImageView img;
+    String tipo;
     private BBDD_Controller controller = new BBDD_Controller(this);
-    private TextInputLayout titulo, descripcion,pais;
-    private Spinner tipo,formato,material;
+    private TextInputLayout titulo, descripcion;
+    private Spinner formato,material;
     private RadioGroup moneda,privacidad,desplazamiento;
     private String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     private Bitmap bitmap,bm;
     private byte[] img_proyecto;
-    private TextView fecha;
+    private TextView fecha, pais;
     private String moneda_text, privacidad_text, desplazamiento_text;
     private CheckBox terminos;
     private ProgressGenerator progressGenerator;
@@ -71,6 +72,8 @@ public class project_public_design extends AppCompatActivity implements Progress
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_public_design);
 
+        tipo = "1";
+
         //poned en todas las actividades que querais la toolbar este codigo
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -78,31 +81,29 @@ public class project_public_design extends AppCompatActivity implements Progress
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         progressGenerator = new ProgressGenerator(this);
-        apb=(ActionProcessButton) findViewById(R.id.b_publicar_proyecto);
+        apb=(ActionProcessButton) findViewById(R.id.b_pub_proyecto);
         apb.setMode(ActionProcessButton.Mode.PROGRESS);
 
-        img = (ImageView)findViewById(R.id.img_proyect);
-        titulo=(TextInputLayout) findViewById(R.id.til_titulo_proyecto);
-        descripcion=(TextInputLayout) findViewById(R.id.til_descripcion_proyecto);
-        pais=(TextInputLayout) findViewById(R.id.til_pais);
+        img = (ImageView)findViewById(R.id.img_proy);
+        titulo=(TextInputLayout) findViewById(R.id.titulo_proy);
+        descripcion=(TextInputLayout) findViewById(R.id.descripcion_proy);
+        pais=(TextView) findViewById(R.id.pais_proy);
 
-        tipo=(Spinner)findViewById(R.id.spinner_tipologia);
-        formato=(Spinner)findViewById(R.id.spinner_formato_archivo);
-        material=(Spinner) findViewById(R.id.spinner_material);
+
 
         moneda=(RadioGroup) findViewById(R.id.radioGroup_moneda);
         privacidad=(RadioGroup) findViewById(R.id.radioGroup_privacidad);
         desplazamiento=(RadioGroup) findViewById(R.id.radioGroup_desplazamiento);
 
-        fecha=(TextView) findViewById(R.id.tv_fecha_hora);
+        fecha=(TextView) findViewById(R.id.fecha_hora_tv_proy);
 
         terminos=(CheckBox) findViewById(R.id.checkBox_terminos);
 
 
 
-        til_titulo=(TextInputLayout) findViewById(R.id.til_titulo_proyecto);
+        til_titulo=(TextInputLayout) findViewById(R.id.titulo_proy);
         til_descripciones=(TextInputLayout) findViewById(R.id.til_descripcion_proyecto);
-        til_fecha = (TextView) findViewById(R.id.fecha);
+        til_fecha = (TextView) findViewById(R.id.fecha_tv_proy);
 
 
 
@@ -132,10 +133,10 @@ public class project_public_design extends AppCompatActivity implements Progress
         moneda.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
-                    case R.id.radioButton_dolar:
+                    case R.id.radioButton_dolar_proy:
                         moneda_text="dolar";
                         break;
-                    case R.id.radioButton_euro:
+                    case R.id.radioButton_euro_proy:
                         moneda_text="euro";
                         break;
                 }
@@ -145,10 +146,10 @@ public class project_public_design extends AppCompatActivity implements Progress
         privacidad.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
-                    case R.id.radioButton_publico:
+                    case R.id.radioButton_publico_proy:
                         privacidad_text="publico";
                         break;
-                    case R.id.radioButton_privado:
+                    case R.id.radioButton_privado_proy:
                         privacidad_text="privado";
                         break;
                 }
@@ -158,15 +159,18 @@ public class project_public_design extends AppCompatActivity implements Progress
         desplazamiento.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
-                    case R.id.radioButton_sidespl:
+                    case R.id.radioButton_sidespl_proy:
                         desplazamiento_text="si";
                         break;
-                    case R.id.radioButton_nodespl:
+                    case R.id.radioButton_nodespl_proy:
                         desplazamiento_text="no";
                         break;
                 }
             }
         });
+
+
+
 
 
 
@@ -178,19 +182,7 @@ public class project_public_design extends AppCompatActivity implements Progress
         newFragment.show(getFragmentManager(),"Date Picker");
     }
 
-    @Override
-    public void onComplete() {
-        TastyToast.makeText(getApplicationContext(),"Proyecto publicado con éxito",TastyToast.LENGTH_LONG,TastyToast.SUCCESS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            finishAffinity();
-        }
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-    }
-
-
-
-
-    public void publicar_proyecto(View v){
+       public void publicar_proyecto(View v){
 
         if (titulo.getEditText().getText().toString().trim().isEmpty()){
             Toast.makeText(this,getString(R.string.campo_requerido),Toast.LENGTH_SHORT).show();
@@ -221,8 +213,8 @@ public class project_public_design extends AppCompatActivity implements Progress
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 img_proyecto = stream.toByteArray();
 
-                controller.publicar_proyecto(tipo.getSelectedItem().toString(), titulo.getEditText().getText().toString(), descripcion.getEditText().getText().toString(), fecha.getText().toString(),
-                        pais.getEditText().getText().toString(), moneda_text, date, controller.obtener_id_conectado(), desplazamiento_text, formato.getSelectedItem().toString(), privacidad_text, material.getSelectedItem().toString(), controller.username_conectado());
+                controller.publicar_proyecto(tipo, titulo.getEditText().getText().toString(), descripcion.getEditText().getText().toString(), fecha.getText().toString(),
+                        pais.getText().toString(), moneda_text, date, controller.obtener_id_conectado(), desplazamiento_text, formato.getSelectedItem().toString(), privacidad_text, material.getSelectedItem().toString(), controller.username_conectado());
                 if (controller.obtener_proyectos_presentados() == 0) {
                     controller.aumentar_proyectos_presentados();
                 } else if (controller.obtener_proyectos_presentados() > 0) {
@@ -265,6 +257,13 @@ public class project_public_design extends AppCompatActivity implements Progress
     }
 
 
-
+    @Override
+    public void onComplete() {
+        TastyToast.makeText(getApplicationContext(),"Proyecto publicado con éxito",TastyToast.LENGTH_LONG,TastyToast.SUCCESS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            finishAffinity();
+        }
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+    }
 }
 

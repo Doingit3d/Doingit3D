@@ -32,14 +32,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/img_proyect"
+                    android:id="@+id/img_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/img_perfil" />
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/til_titulo_proyecto"
+                    android:id="@+id/titulo_proy"
                     android:layout_width="197dp"
                     android:layout_height="match_parent"
                     android:focusable="false"
@@ -56,7 +56,7 @@
 
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_descripcion_proyecto"
+                android:id="@+id/descripcion_proy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20sp">
@@ -69,7 +69,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:id="@+id/tv_formato_archivo"
+                android:id="@+id/formato_archivo_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -78,7 +78,7 @@
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/spinner_formato_archivo"
+                android:id="@+id/formato_archivo_spinner_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
@@ -86,7 +86,7 @@
 
 
             <TextView
-                android:id="@+id/tv_material"
+                android:id="@+id/material_tv_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -95,14 +95,14 @@
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/spinner_material"
+                android:id="@+id/material_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
                 android:entries="@array/material" />
 
             <TextView
-                android:id="@+id/tv_fecha_hora"
+                android:id="@+id/fecha_hora_tv_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -122,7 +122,7 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:id="@+id/fecha"
+                    android:id="@+id/fecha_tv_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fecha_hora"
@@ -131,7 +131,7 @@
                     />
 
                 <ImageButton
-                    android:id="@+id/b_fecha_hora"
+                    android:id="@+id/fecha_hora_proy"
                     android:layout_width="29dp"
                     android:layout_height="29dp"
                     android:onClick="abrirCalendario"
@@ -155,13 +155,13 @@
 
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageView_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/or_line" />
 
             <TextView
-                android:id="@+id/tv_moneda"
+                android:id="@+id/tv_moneda_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -170,20 +170,20 @@
                 android:textStyle="bold" />
 
             <RadioGroup
-                android:id="@+id/radioGroup_moneda"
+                android:id="@+id/radioGroup_moneda_proy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20sp">
 
                 <RadioButton
-                    android:id="@+id/radioButton_euro"
+                    android:id="@+id/radioButton_euro_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/euro" />
 
                 <RadioButton
-                    android:id="@+id/radioButton_dolar"
+                    android:id="@+id/radioButton_dolar_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -192,7 +192,7 @@
 
 
             <TextView
-                android:id="@+id/tv_desplazamiento"
+                android:id="@+id/tv_desplazamiento_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -201,21 +201,21 @@
                 android:textStyle="bold" />
 
             <RadioGroup
-                android:id="@+id/radioGroup_desplazamiento"
+                android:id="@+id/radioGroup_desplazamiento_proy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20sp"
                 >
 
                 <RadioButton
-                    android:id="@+id/radioButton_sidespl"
+                    android:id="@+id/radioButton_sidespl_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/si_desplazamiento" />
 
                 <RadioButton
-                    android:id="@+id/radioButton_nodespl"
+                    android:id="@+id/radioButton_nodespl_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -223,7 +223,7 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/tv_pais"
+                android:id="@+id/pais_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/pais"
@@ -237,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/ciudad_poblacion_pais" />
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_pais"
+                android:id="@+id/til_pais_proy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20sp"
@@ -246,7 +246,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageView1_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="?attr/dividerHorizontal" />
@@ -264,7 +264,7 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:id="@+id/textView33"
+                    android:id="@+id/textView3_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Subir_archivo"
@@ -273,7 +273,7 @@
 
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/imageButton_proy"
                     android:layout_width="35dp"
                     android:layout_height="34dp"
                     app:srcCompat="@android:drawable/ic_menu_upload" />
@@ -282,20 +282,20 @@
 
 
             <RadioGroup
-                android:id="@+id/radioGroup_privacidad"
+                android:id="@+id/radioGroup_privacidad_proy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20sp">
 
                 <RadioButton
-                    android:id="@+id/radioButton_publico"
+                    android:id="@+id/radioButton_publico_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/privacidad_publico" />
 
                 <RadioButton
-                    android:id="@+id/radioButton_privado"
+                    android:id="@+id/radioButton_privado_proy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -304,7 +304,7 @@
             </RadioGroup>
 
             <CheckBox
-                android:id="@+id/checkBox_terminos"
+                android:id="@+id/checkBox_terminos_proy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
@@ -334,7 +334,7 @@
                 fbutton:shadowHeight="5dp"
                 android:onClick="publicar_proyecto"/>-->
             <com.dd.processbutton.iml.ActionProcessButton
-                android:id="@+id/b_publicar_proyecto"
+                android:id="@+id/b_pub_proyecto"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginBottom="18dp"
